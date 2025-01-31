@@ -1,128 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poder</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orgon+Plan:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="resources/logo.png" type="image/png">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.dom.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Poder - Advanced Data Extraction Tool</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="icon" href="resources/icon.png" type="image/png">
+  <style>
+    /* Spider web effect */
+    .spider-web-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    canvas {
+      display: block;
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <div class="menu-icon" id="menu-icon">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </div>
-        <ul class="nav-list" id="nav-list">
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#" id="return-button">Return</a></li>
-        </ul>
-    </nav>
-    <header style="background-image: url('banner.jpg'); background-size: cover; background-position: center;">
-        <div class="header-container">
-            <div class="logo-container">
-                <img src="resources/logo.png" alt="Poder Logo" class="logo">
-                <h1 class="logo-text">Poder</h1>
-            </div>
-            <p class="slogan">The ultimate solution for automated Facebook data extraction.</p>
-            <a href="resources/setup.exe" class="cta-button" download id="download-button">Download Beta Version</a>
-            <p id="download-counter" class="download-counter">Downloads: 0</p> <!-- Simplified download counter -->
-        </div>
-    </header>
+  <div class="relative min-h-screen bg-white text-black">
+    <!-- Spider web animation background -->
+    <div class="spider-web-container">
+      <canvas id="spiderWebCanvas"></canvas>
+    </div>
 
-    <main>
-        <section id="cards" class="section">
-                <div class="card">
-                    <a href="#">
-                        <div class="card-content">
-                            <span>Card Text</span>
-                            <img src="resources/card-image.jpg" alt="Card Image" class="card-image">
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Add more cards here if needed -->
-        </section>
-        <section id="about" class="section">
-            <div class="container">
-                <p style="font-size: 1.2em; font-weight: bold;">Poder is an advanced data extraction tool designed to automate and simplify Facebook scraping. Whether you're conducting research, monitoring trends, or gathering insights, Poder delivers fast, accurate, and efficient results with minimal effort.</p>
-                <p style="font-size: 1.2em; font-weight: bold;">With its multi-threaded engine, real-time progress tracking, and modern PyQt5 interface, Poder makes data collection seamless and user-friendly.</br>
-                </br></p>
-                <h2 >Key Features</h2>
-            </br>   
-                <ul>
-                    <li style="font-weight: bold;">-Facebook Page & Hashtag Search – Easily extract data by name or hashtag.</li>
-                    <li style="font-weight: bold;">-Auto-Scraping Mode – Continuous data extraction without manual input.</li>
-                    <li style="font-weight: bold;">-Multi-Threaded Scraping – Faster performance for large-scale data collection.</li>
-                    <li style="font-weight: bold;">-Real-Time Logs & Progress Tracking – Stay updated with live logs.</li>
-                    <li style="font-weight: bold;">-Structured Data Storage – Save and organize extracted data for analysis.</li>
-                </ul>
-            </br>
-                <h3>Why Choose Poder?</h3>
-            </br>
-                <p style="font-size: 1.2em; font-weight: bold;">-Automated & Efficient – Save time with fully automated data scraping.</p>
-                <p style="font-size: 1.2em; font-weight: bold;">-User-Friendly UI – Intuitive design powered by PyQt5.</p>
-                <p style="font-size: 1.2em; font-weight: bold;">-Real-Time Insights – Instant analytics from collected data.</p>
-                <p style="font-size: 1.2em; font-weight: bold;">-Secure & Reliable – Ensuring safe and structured data handling.</p>
-                <p style="font-size: 1.2em; font-weight: bold;">-Join the Beta Version (v1.0) on 31-01-2025 and experience next-level data extraction like never before!</p>
-                <p style="font-size: 1.2em; font-weight: bold;">-Poder is designed to meet the needs of researchers, marketers, and analysts who require accurate and timely data from Facebook. Our tool simplifies the process of data extraction, allowing users to focus on analyzing and utilizing the data rather than spending time on manual data collection.</p>
-                <p style="font-size: 1.2em; font-weight: bold;">-With Poder, you can easily search for Facebook pages and hashtags, set up automated scraping tasks, and monitor the progress in real-time. The multi-threaded engine ensures that even large-scale data collection tasks are completed quickly and efficiently.</p>
-                <p style="font-size: 1.2em; font-weight: bold;">-Our user-friendly interface, built with PyQt5, makes it easy for users of all skill levels to navigate and use the tool. Whether you are a seasoned data analyst or a beginner, Poder provides a seamless experience that enhances your productivity.</p>
-                <p style="font-size: 1.2em; font-weight: bold;">-We prioritize the security and reliability of your data. All extracted data is stored in a structured format, making it easy to analyze and integrate with other tools and systems. Our robust security measures ensure that your data is handled safely and securely.</p>
-                <p style="font-size: 1.2em; font-weight: bold;">Don't miss out on the opportunity to join the Beta Version (v1.0) on 31-01-2025. Experience the power of automated data extraction with Poder and take your data analysis to the next level.</p>
+    <!-- Main content -->
+    <div class="content">
+      <nav>
+        <h1>Poder</h1>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#why-poder">Why Poder</a>
+          <a href="#download">Download</a>
+        </div>
+      </nav>
+
+      <main>
+        <div class="hero">
+          <div class="beta-badge">
+            🚀 Beta Version 1.0 - Now Available!
+          </div>
+          <h2>Advanced Data Extraction Made Simple</h2>
+          <p class="hero-text">
+            Experience the next generation of data extraction tools. The beta version is now available
+            with powerful Facebook data extraction capabilities and an intuitive interface.
+          </p>
+          <div class="button-group">
+            <button class="primary-button glow-effect" onclick="downloadSetup()">
+              <i data-lucide="download"></i>
+              Download for Windows (64-bit)
+            </button>
+          </div>
+          <div class="download-counter">
+            <span id="downloadCount">10</span> downloads
+          </div>
+        </div>
+
+        <section id="features" class="features">
+          <h3>What's New in Beta</h3>
+          <div class="features-grid">
+            <div class="feature-card">
+              <i data-lucide="search"></i>
+              <h4>Facebook Search</h4>
+              <p>Search by name or hashtag on Facebook with enhanced precision.</p>
             </div>
+            <div class="feature-card">
+              <i data-lucide="zap"></i>
+              <h4>Multi-threaded</h4>
+              <p>Faster data collection with multi-threaded scraping capabilities.</p>
+            </div>
+            <div class="feature-card">
+              <i data-lucide="database"></i>
+              <h4>Progress Tracking</h4>
+              <p>Detailed logs and real-time progress indicators.</p>
+            </div>
+            <div class="feature-card">
+              <i data-lucide="layout"></i>
+              <h4>Modern UI</h4>
+              <p>Sleek PyQt5 interface designed for optimal user experience.</p>
+            </div>
+          </div>
         </section>
 
-
-        <section id="contact" class="section">
-            <div class="container">
-                <p>Contact information for Poder.</p>
+        <section id="why-poder" class="why-poder">
+          <h3>Why Choose Poder?</h3>
+          <div class="benefits-grid">
+            <div class="benefit-card">
+              <i data-lucide="zap"></i>
+              <h4>Automate Collection</h4>
+              <p>Streamline your research with automated scraping, saving time and effort.</p>
             </div>
+            <div class="benefit-card">
+              <i data-lucide="search"></i>
+              <h4>Instant Insights</h4>
+              <p>Access real-time analytics directly from your collected data.</p>
+            </div>
+            <div class="benefit-card">
+              <i data-lucide="shield"></i>
+              <h4>Security First</h4>
+              <p>Your data is handled with industry-leading security practices.</p>
+            </div>
+          </div>
         </section>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Poder. Licensed under the MIT License.</p>
-        </div>
-    </footer>
+        <section id="download" class="download-section">
+          <div class="download-card">
+            <h3>🚀 Beta v1.0 Available Now</h3>
+            <p>
+              Download Poder Beta and start extracting data efficiently. Optimized for Windows.
+            </p>
+            <div class="download-options">
+              <button class="primary-button glow-effect" onclick="downloadSetup()">
+                <i data-lucide="download"></i>
+                Download for Windows (64-bit)
+              </button>
+            </div>
+            <div class="download-counter">
+              <span id="downloadCount2">10</span> downloads
+            </div>
+          </div>
+        </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuIcon = document.getElementById('menu-icon');
-            const navList = document.getElementById('nav-list');
-            const returnButton = document.getElementById('return-button');
-            const downloadButton = document.getElementById('download-button');
-            const downloadCounter = document.getElementById('download-counter');
+        <footer>
+          <div class="footer-text">
+            <i data-lucide="coffee"></i>
+            <span>Made with passion by developers for developers</span>
+          </div>
+        </footer>
+      </main>
+    </div>
+  </div>
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
 
-            let count = localStorage.getItem('downloadCount') || 0;
-            updateCounter(count);
+    // Download counter functionality
+    function incrementDownloads() {
+      const counts = document.querySelectorAll('#downloadCount, #downloadCount2');
+      counts.forEach(count => {
+        let currentCount = parseInt(count.textContent.replace(',', ''));
+        currentCount++;
+        count.textContent = currentCount.toLocaleString();
+      });
+    }
 
-            menuIcon.addEventListener('click', () => {
-                navList.classList.toggle('active');
-            });
+    // Spider web effect with canvas
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('spiderWebCanvas');
+      const ctx = canvas.getContext('2d');
 
-            returnButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                navList.classList.remove('active');
-            });
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
-            downloadButton.addEventListener('click', () => {
-                count++;
-                localStorage.setItem('downloadCount', count);
-                updateCounter(count);
-            });
+      const points = [];
+      const numPoints = 200; // Increase the number of points
+      const maxDistance = 100;
+      const mouse = { x: null, y: null };
 
-            function updateCounter(count) {
-                downloadCounter.textContent = `Downloads: ${count}`;
-            }
+      for (let i = 0; i < numPoints; i++) {
+        points.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 2,
+          vy: (Math.random() - 0.5) * 2
         });
-    </script>
-    <script src="script.js"></script>
+      }
+
+      canvas.addEventListener('mousemove', (event) => {
+        mouse.x = event.clientX;
+        mouse.y = event.clientY;
+      });
+
+      canvas.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+      });
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < numPoints; i++) {
+          const p1 = points[i];
+          p1.x += p1.vx;
+          p1.y += p1.vy;
+
+          if (p1.x < 0 || p1.x > canvas.width) p1.vx *= -1;
+          if (p1.y < 0 || p1.y > canvas.height) p1.vy *= -1;
+
+          for (let j = i + 1; j < numPoints; j++) {
+            const p2 = points[j];
+            const dx = p1.x - p2.x;
+            const dy = p1.y - p2.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < maxDistance) {
+              ctx.strokeStyle = `rgba(0, 0, 0, ${1 - distance / maxDistance})`;
+              ctx.beginPath();
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.stroke();
+            }
+          }
+
+          if (mouse.x && mouse.y) {
+            const dx = p1.x - mouse.x;
+            const dy = p1.y - mouse.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < maxDistance) {
+              ctx.strokeStyle = `rgba(0, 0, 0, ${1 - distance / maxDistance})`;
+              ctx.beginPath();
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(mouse.x, mouse.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    });
+
+    // Download setup.exe functionality
+    function downloadSetup() {
+      const link = document.createElement('a');
+      link.href = 'resources/setup.exe';
+      link.download = 'setup.exe';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      incrementDownloads();
+    }
+  </script>
 </body>
 </html>
