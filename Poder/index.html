@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poder</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orgon+Plan:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="resources/logo.png" type="image/png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.dom.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="menu-icon" id="menu-icon">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <ul class="nav-list" id="nav-list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#" id="return-button">Return</a></li>
+        </ul>
+    </nav>
+    <header style="background-image: url('banner.jpg'); background-size: cover; background-position: center;">
+        <div class="header-container">
+            <div class="logo-container">
+                <img src="resources/logo.png" alt="Poder Logo" class="logo">
+                <h1 class="logo-text">Poder</h1>
+            </div>
+            <p class="slogan">The ultimate solution for automated Facebook data extraction.</p>
+            <a href="resources/setup.exe" class="cta-button" download id="download-button">Download Beta Version</a>
+            <p id="download-counter" class="download-counter">Downloads: 0</p> <!-- Simplified download counter -->
+        </div>
+    </header>
+
+    <main>
+        <section id="cards" class="section">
+                <div class="card">
+                    <a href="#">
+                        <div class="card-content">
+                            <span>Card Text</span>
+                            <img src="resources/card-image.jpg" alt="Card Image" class="card-image">
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Add more cards here if needed -->
+        </section>
+        <section id="about" class="section">
+            <div class="container">
+                <p style="font-size: 1.2em; font-weight: bold;">Poder is an advanced data extraction tool designed to automate and simplify Facebook scraping. Whether you're conducting research, monitoring trends, or gathering insights, Poder delivers fast, accurate, and efficient results with minimal effort.</p>
+                <p style="font-size: 1.2em; font-weight: bold;">With its multi-threaded engine, real-time progress tracking, and modern PyQt5 interface, Poder makes data collection seamless and user-friendly.</br>
+                </br></p>
+                <h2 >Key Features</h2>
+            </br>   
+                <ul>
+                    <li style="font-weight: bold;">-Facebook Page & Hashtag Search – Easily extract data by name or hashtag.</li>
+                    <li style="font-weight: bold;">-Auto-Scraping Mode – Continuous data extraction without manual input.</li>
+                    <li style="font-weight: bold;">-Multi-Threaded Scraping – Faster performance for large-scale data collection.</li>
+                    <li style="font-weight: bold;">-Real-Time Logs & Progress Tracking – Stay updated with live logs.</li>
+                    <li style="font-weight: bold;">-Structured Data Storage – Save and organize extracted data for analysis.</li>
+                </ul>
+            </br>
+                <h3>Why Choose Poder?</h3>
+            </br>
+                <p style="font-size: 1.2em; font-weight: bold;">-Automated & Efficient – Save time with fully automated data scraping.</p>
+                <p style="font-size: 1.2em; font-weight: bold;">-User-Friendly UI – Intuitive design powered by PyQt5.</p>
+                <p style="font-size: 1.2em; font-weight: bold;">-Real-Time Insights – Instant analytics from collected data.</p>
+                <p style="font-size: 1.2em; font-weight: bold;">-Secure & Reliable – Ensuring safe and structured data handling.</p>
+                <p style="font-size: 1.2em; font-weight: bold;">-Join the Beta Version (v1.0) on 31-01-2025 and experience next-level data extraction like never before!</p>
+                <p style="font-size: 1.2em; font-weight: bold;">-Poder is designed to meet the needs of researchers, marketers, and analysts who require accurate and timely data from Facebook. Our tool simplifies the process of data extraction, allowing users to focus on analyzing and utilizing the data rather than spending time on manual data collection.</p>
+                <p style="font-size: 1.2em; font-weight: bold;">-With Poder, you can easily search for Facebook pages and hashtags, set up automated scraping tasks, and monitor the progress in real-time. The multi-threaded engine ensures that even large-scale data collection tasks are completed quickly and efficiently.</p>
+                <p style="font-size: 1.2em; font-weight: bold;">-Our user-friendly interface, built with PyQt5, makes it easy for users of all skill levels to navigate and use the tool. Whether you are a seasoned data analyst or a beginner, Poder provides a seamless experience that enhances your productivity.</p>
+                <p style="font-size: 1.2em; font-weight: bold;">-We prioritize the security and reliability of your data. All extracted data is stored in a structured format, making it easy to analyze and integrate with other tools and systems. Our robust security measures ensure that your data is handled safely and securely.</p>
+                <p style="font-size: 1.2em; font-weight: bold;">Don't miss out on the opportunity to join the Beta Version (v1.0) on 31-01-2025. Experience the power of automated data extraction with Poder and take your data analysis to the next level.</p>
+            </div>
+        </section>
+
+
+        <section id="contact" class="section">
+            <div class="container">
+                <p>Contact information for Poder.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Poder. Licensed under the MIT License.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuIcon = document.getElementById('menu-icon');
+            const navList = document.getElementById('nav-list');
+            const returnButton = document.getElementById('return-button');
+            const downloadButton = document.getElementById('download-button');
+            const downloadCounter = document.getElementById('download-counter');
+
+            let count = localStorage.getItem('downloadCount') || 0;
+            updateCounter(count);
+
+            menuIcon.addEventListener('click', () => {
+                navList.classList.toggle('active');
+            });
+
+            returnButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                navList.classList.remove('active');
+            });
+
+            downloadButton.addEventListener('click', () => {
+                count++;
+                localStorage.setItem('downloadCount', count);
+                updateCounter(count);
+            });
+
+            function updateCounter(count) {
+                downloadCounter.textContent = `Downloads: ${count}`;
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
