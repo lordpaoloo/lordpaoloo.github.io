@@ -107,10 +107,12 @@
             font-family: 'Space Mono', monospace;
         }
         .footer-text {
-            transition: letter-spacing 0.8s ease;
+            transition: letter-spacing 0.8s ease, color 0.3s ease;
         }
         .footer-text:hover {
             letter-spacing: 4px;
+            color: #ff8c00; /* Add a color change on hover */
+            text-shadow: 0 0 10px rgba(255, 140, 0, 0.8); /* Add a subtle glow effect */
         }
         .button {
             font-size: 17px;
@@ -276,8 +278,11 @@
     </style>
 </head>
 <body class="bg-light dark:bg-dark text-dark dark:text-white min-h-screen flex flex-col font-['Inter'] transition-colors duration-300"></body>
-    <div class="absolute top-8 right-8 z-10">
-        <button id="themeToggle" class="p-2 rounded-lg bg-dark dark:bg-light text-light dark:text-dark w-10 h-10 flex items-center justify-center">
+    <div class="absolute top-8 right-8 z-10 flex items-center gap-4">
+        <a href="pricing.html" class="px-4 py-2 rounded-full bg-gradient-to-r from-[#9C83FF] to-[#FF9051] text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+            Pricing
+        </a>
+        <button id="themeToggle" class="p-2 rounded-full bg-gradient-to-r from-[#6f42c1] to-[#e83e8c] text-white shadow-lg hover:shadow-xl hover:rotate-180 transition-all duration-300 w-12 h-12 flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
             </svg>
